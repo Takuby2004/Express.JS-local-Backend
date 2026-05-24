@@ -1,0 +1,40 @@
+erDiagram
+    DOCENTES {
+        integer docente_id PK
+        varchar nombre
+        varchar apellido
+        varchar especialidad
+    }
+    
+    MATERIAS {
+        integer materia_id PK
+        varchar nombre_materia
+        integer docente_id FK
+    }
+    
+    ESTUDIANTES {
+        integer estudiante_id PK
+        varchar nombre
+        varchar apellido
+        varchar email
+        date fecha_nacimiento
+    }
+    
+    INSCRIPCIONES {
+        integer inscripcion_id PK
+        integer estudiante_id FK
+        integer materia_id FK
+        date fecha_inscripcion
+    }
+    
+    ITEMS {
+        integer item_id PK
+        varchar nombre_item
+        integer cantidad_stock
+        varchar tipo
+    }
+
+    %% Relaciones
+    DOCENTES ||--o{ MATERIAS : "imparte"
+    ESTUDIANTES ||--o{ INSCRIPCIONES : "realiza"
+    MATERIAS ||--o{ INSCRIPCIONES : "recibe"
